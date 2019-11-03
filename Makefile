@@ -1,4 +1,5 @@
 PY=python3
+PI=pip
 
 VENV_DIR=venv
 ACT_FILE=$(VENV_DIR)/bin/activate
@@ -18,18 +19,18 @@ $(VENV_DIR):
 	$(PY) -m venv $(VENV_DIR)
 	( \
 		. $(ACT_FILE); \
-		pip install wheel; \
-		pip install pyshp requests numpy shapely \
+		$(PI) install wheel; \
+		$(PI) install pyshp requests numpy shapely \
 	)
 
 srtm3: $(VENV_DIR) $(SRTM_SRC)
-	. $(ACT_FILE); python3 $(SRTM_EXEC)
+	. $(ACT_FILE); $(PY) $(SRTM_EXEC)
 
-base: $(VENV_DIR) basemap_gen.py $(BASE_SRC)
-	. $(ACT_FILE); python3 basemap_gen.py
+base: $(VENV_DIR) $(BASE_SRC)
+	. $(ACT_FILE); $(PY) $(BASE_EXEC)
 
-elev: $(VENV_DIR) $(EXEV_SRC) srtm3
-	. $(ACT_FILE); python3 $(ELEV_EXEC)
+elev: $(VENV_DIR) $(ELEV_SRC) srtm3
+	. $(ACT_FILE); $(PY) $(ELEV_EXEC)
 
 clean-venv:
 	rm -rf venv
