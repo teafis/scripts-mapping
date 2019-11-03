@@ -24,7 +24,7 @@ $(VENV_DIR):
 	)
 
 srtm3: $(VENV_DIR) $(SRTM_SRC)
-	. $(ACT_FILE); $(PY) $(SRTM_EXEC)
+	. $(ACT_FILE); $(PY) $(SRTM_EXEC) -m 4
 
 base: $(VENV_DIR) $(BASE_SRC)
 	. $(ACT_FILE); $(PY) $(BASE_EXEC)
