@@ -1,6 +1,8 @@
 PY=python3
 PI=pip
 
+MULTI=4
+
 VENV_DIR=venv
 ACT_FILE=$(VENV_DIR)/bin/activate
 
@@ -24,13 +26,13 @@ $(VENV_DIR):
 	)
 
 srtm3: $(VENV_DIR) $(SRTM_SRC)
-	. $(ACT_FILE); $(PY) $(SRTM_EXEC) -m 4
+	. $(ACT_FILE); $(PY) $(SRTM_EXEC) -m $(MULTI)
 
 base: $(VENV_DIR) $(BASE_SRC)
 	. $(ACT_FILE); $(PY) $(BASE_EXEC)
 
 elev: $(VENV_DIR) $(ELEV_SRC) srtm3
-	. $(ACT_FILE); $(PY) $(ELEV_EXEC)
+	. $(ACT_FILE); $(PY) $(ELEV_EXEC) -m $(MULTI)
 
 clean-venv:
 	rm -rf venv
