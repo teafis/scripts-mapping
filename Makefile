@@ -37,6 +37,9 @@ elev: $(VENV_DIR) $(ELEV_SRC) srtm3
 clean-venv:
 	rm -rf venv
 
+clean-out: clean-base clean-elev
+	rm -rf output
+
 clean-base:
 	rm -rf output/*.dat
 
@@ -46,8 +49,6 @@ clean-elev:
 clean-srtm3:
 	rm -rf srtm3
 
-clean: clean-venv clean-base clean-elev clean-srtm3
-	rm -rf output
+clean: clean-venv clean-out clean-srtm3
 
-.PHONY: base elev clean-venv clean-base clean-elev clean-srtm3 clean
-
+.PHONY: base elev clean-out clean-venv clean-base clean-elev clean-srtm3 clean
