@@ -5,6 +5,7 @@ output/
 maps/
 *.hgt
 *.hgt.md5
+*.zip
 
 # Python
 .idea/
