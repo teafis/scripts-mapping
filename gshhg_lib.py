@@ -6,7 +6,6 @@ set provided by NOAA under the LGPLv3 (https://www.ngdc.noaa.gov/mgg/shorelines/
 import array
 import enum
 import io
-import struct
 import sys
 import typing
 
@@ -27,9 +26,10 @@ class GSHHGShape:
         """
         Enumeration to provide the type of a given shape
         """
-        LAND = 1,
-        LAKE = 2,
-        ISLAND_IN_LAKE = 3,
+        INVALID = -1
+        LAND = 1
+        LAKE = 2
+        ISLAND_IN_LAKE = 3
         POND_IN_ISLAND_IN_LAKE = 4
 
     def __init__(self, header: bytes):
@@ -157,7 +157,11 @@ class GSHHGShape:
         :return: an instance of the shape type enumeration corresponding to the current shape type
         """
         v = self.flag & 0xFF
-        return self.LevelType(v)
+        try:
+            return self.LevelType(v)
+        except ValueError as e:
+            print('Invalid level type {:d}'.format(v))
+            return self.LevelType.INVALID
 
     def set_points(self, points: bytes) -> None:
         """

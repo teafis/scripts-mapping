@@ -1,6 +1,7 @@
-# Ignore srtm3 data files
+# Ignore temporary data files
 
 srtm3/
+gshhg/
 output/
 maps/
 *.hgt

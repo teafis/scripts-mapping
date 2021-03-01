@@ -71,6 +71,8 @@ print('Length: {:d}'.format(len(shapes)))
 
 plt.figure()
 for sh in shapes:
+    if sh.level != sh.LevelType.LAND:
+        continue
     x = sh.get_lon()
     y = sh.get_lat()
     plt.plot(x, y)
